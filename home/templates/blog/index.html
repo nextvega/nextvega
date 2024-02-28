@@ -1,0 +1,82 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content%}
+
+
+
+<main class="contenedor main__principal main__principal__child">
+    <section class="main__principal__text">
+        <div class="main__principal__text__header">
+            <h1 class="main__principal__text__header-slogan">Blog &  <span class="main__principal__text__header-slogan--color">News</span></h1>
+        </div>
+
+        <div class="main__principal__text__description">
+            <p class="main__principal__text__description-more">
+                Blog posts from Parcel on email development and product updates.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+
+<section class="contenedor blog__principal">
+    {% for entry in entryblog %}
+        <article class="blog__principal__article">
+            <div class="blog__principal__article__header">
+                <ul class="blog__principal__article__header__list">
+                    <li class="blog__principal__article__header__list-item"><i class="bi bi-border-style"></i> Published: {{entry.created_at | date:"M jS Y"}}</li>
+                    <li class="blog__principal__article__header__list-item"><i class="bi bi-border-style"></i> Sources by: {{entry.autor_noticia}}</li>
+                </ul>
+            </div>
+            <div class="blog__principal__article__body">
+                <h1 class="blog__principal__article__body-title">{{entry.nombre_noticia}}</h1>
+                <p class="blog__principal__article__body-text">{{entry.preview_noticia}}</p>
+                <a href="{% url 'entry' slug=entry.slug_noticia %}" class="blog__principal__article__body-link">Read More <i class="bi bi-chevron-right"></i></a>
+            </div>
+        </article>
+    {% endfor %}
+</section>
+
+
+<section class="contenedor code__editor__principal__main code__editor__principal__contacto">
+
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__header__main">
+            <h1 class="code__editor__principal__header__main-title code__editor__principal__header__main-title-small">Ready to give it a try?</h1>
+            <h3 class="code__editor__principal__header__main-subtitle">Upgrade your workflow. No credit card required.</h3>
+        </section>
+
+        <section class="header__principal__login">
+            <ul class="header__principal__login__list">
+                <li class="header__principal__login__list__item">
+                    <a class="header__principal__login__list__item-button" href="https://www.linkedin.com/in/ricardo-martinez-b3b15622a/" target="_blank"><i class="bi bi-linkedin"></i> Visit My Linkedln </a>
+                </li>
+                <li class="header__principal__login__list__item">
+                    <button class="header__principal__login__list__item-button download_cv" ><i class="bi bi-floppy"></i> Download CV </button>
+                </li>
+            </ul>
+        </section>
+    </article>
+
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+
+    <script src="{% static 'build/js/index.js' %}" ></script>
+    <script src="{% static 'build/js/alerts.js' %}"></script>
+
+
+{% endblock %}

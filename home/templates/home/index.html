@@ -1,0 +1,573 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content%}
+
+
+
+{%for message in messages %}
+    {%if "signin" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Successful Login",
+            text: "{{message}}",
+            icon: "success"
+            });
+        </script>
+    {%endif%}
+
+    {%if "errorForm" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Failed To Login",
+            text: "{{message}}",
+            icon: "error"
+            });
+        </script>
+    {%endif%}
+{% endfor %}
+
+
+
+<main class="contenedor main__principal">
+    <section class="main__principal__text">
+        <div class="main__principal__text__header">
+            <h1 class="main__principal__text__header-slogan">Innovating  <span class="main__principal__text__header-slogan--color">Through</span> Code</h1>
+        </div>
+
+        <div class="main__principal__text__description">
+            <p class="main__principal__text__description-more">
+                Transforming ideas into cutting-edge digital solutions is our commitment to innovation, driving each project to deliver results that surpass expectations and shape the future of technology.
+            </p>
+        </div>
+    </section>
+
+    <form action="" class="main__principal__form" method="post">
+        {% csrf_token %}
+        <div class="main__principal__form__grid">
+            <span class="main__principal__form__grid-icon">
+                <i class="fa-solid fa-envelope-open-text fleft__img"></i>
+            </span>
+            <input type="email" class="main__principal__form__grid-input" placeholder="example@example.com" name="" required autocomplete="off">
+            <button type="submit" class="main__principal__form__grid-button">Get started</button>
+        </div>
+
+    </form>
+
+</main>
+
+<section class="contenedor brands__principal">
+    <div class="brands__principal__text">
+        <h5 class="brands__principal__text-title">NextVega works with IT Services Companies, S.V. Government Agencies, Enterprises & Startups</h5>
+    </div>
+
+
+    <ul class="brands__principal__list">
+        <li class="brands__principal__list__item">
+            <img src="{% static 'build/img/brands/workana.png' %}" alt="brand">
+        </li>
+
+        <li class="brands__principal__list__item">
+            <img src="{% static 'build/img/brands/construmas.png' %}" alt="brand">
+        </li>
+
+        <li class="brands__principal__list__item">
+            <img src="{% static 'build/img/brands/logo1.webp' %}" alt="brand">
+        </li>
+
+        <li class="brands__principal__list__item">
+            <img src="{% static 'build/img/brands/bancolombia.png' %}" alt="brand">
+        </li>
+
+        <li class="brands__principal__list__item">
+            <img src="{% static 'build/img/brands/gob.png' %}" alt="brand">
+        </li>
+    </ul>
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">ABOUT ME</h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title">Passionate <span class="code__editor__principal__header__main-title-color">about</span> coding</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            Full-stack web developer with over 4 years of combined professional and freelance experience. 
+            I have collaborated with various companies and clients, applying my development skills and knowledge 
+            using different methodologies to deliver clean and high-quality work.
+        </p>
+    </section>
+
+    <div class="code__editor__principal__main__img">
+        <img src="{% static 'build/img/editor.svg' %}" alt="brand">
+    </div>
+
+
+    <section class="code__editor__principal__main__skills">
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Technical Skills</h3>
+            <p class="code__editor__principal__main__skills__item-text">A software developer possesses a deep mastery of relevant programming languages, frameworks.</p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Problem-Solving</h3>
+            <p class="code__editor__principal__main__skills__item-text">The ability to tackle complex problems creatively and find innovative solutions is crucial in software development. </p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Teamwork Dev</h3>
+            <p class="code__editor__principal__main__skills__item-text">Software development projects often require teamwork and collaboration with other developers.</p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Adaptability & Learning</h3>
+            <p class="code__editor__principal__main__skills__item-text">The field of software development is constantly evolving, with new technologies and methodologies.</p>
+        </article>
+    </section>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">TOP characteristics</h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title">Always the <span class="code__editor__principal__header__main-title-color2">best</span> practices</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            As a developer, I focus on striving for excellence in every project or design to offer 
+            the best services and technologies to my clients, enabling us to build a very promising 
+            technological future together.
+        </p>
+
+        <a href="#" class="code__editor__principal__main__description-link">View all developed projects. <i class="bi bi-arrow-right-short"></i></a>
+    </section>
+
+    <div class="code__editor__principal__main__img">
+        <img src="{% static 'build/img/live.svg' %}" alt="brand">
+    </div>
+
+
+    <section class="code__editor__principal__main__skills-2">
+        <article class="code__editor__principal__main__skills__item">
+            <div class="code__editor__principal__main__skills__item-svg">
+                <div class="code__editor__principal__main__skills__item-svg-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M13 1l.001 3.062A8.004 8.004 0 0119.938 11H23v2l-3.062.001a8.004 8.004 0 01-6.937 6.937L13 23h-2v-3.062a8.004 8.004 0 01-6.938-6.937L1 13v-2h3.062A8.004 8.004 0 0111 4.062V1h2zm-1 5a6 6 0 100 12 6 6 0 000-12zm0 4a2 2 0 110 4 2 2 0 010-4z"></path></svg>
+                </div>
+            </div>
+            <h3 class="code__editor__principal__main__skills__item-title">Attention to Detail</h3>
+            <p class="code__editor__principal__main__skills__item-text">
+                Developers who pay close attention to detail produce high-quality, reliable software that meets user requirements.
+            </p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <div class="code__editor__principal__main__skills__item-svg">
+                <div class="code__editor__principal__main__skills__item-svg-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M11.141 2h1.718c2.014 0 3.094.278 4.072.801a5.452 5.452 0 012.268 2.268c.523.978.801 2.058.801 4.072v5.718c0 2.014-.278 3.094-.801 4.072a5.452 5.452 0 01-2.268 2.268c-.978.523-2.058.801-4.072.801H11.14c-2.014 0-3.094-.278-4.072-.801A5.452 5.452 0 014.8 18.931c-.522-.978-.8-2.058-.8-4.072V9.14c0-2.014.278-3.094.801-4.072A5.452 5.452 0 017.07 2.801C8.047 2.278 9.127 2 11.141 2zM11 6v5h2V6h-2z"></path></svg>
+                </div>
+           </div>
+            <h3 class="code__editor__principal__main__skills__item-title">Flexibility and Adaptability</h3>
+            <p class="code__editor__principal__main__skills__item-text">
+                Flexible and capable of adapting to these circumstances to deliver effective and updated solutions.
+            </p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <div class="code__editor__principal__main__skills__item-svg">
+                <div class="code__editor__principal__main__skills__item-svg-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 100-10 5 5 0 000 10zm0-2a3 3 0 110-6 3 3 0 010 6z"></path></svg>
+                </div>
+            </div>
+            <h3 class="code__editor__principal__main__skills__item-title">Client-Centric Approach</h3>
+            <p class="code__editor__principal__main__skills__item-text">
+                Understanding the needs and objectives of their clients to provide personalized solutions and meet their requirements.
+            </p>
+        </article>
+    </section>
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">DESIGN SYSTEMS</h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title">Faster <span class="code__editor__principal__header__main-title-color3">Code</span> with strategies</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            For various projects, I focus on creating a clear and intuitive interface for users to ensure 
+            a sustainable and precise development. This ensures that the app or website is sustainable 
+            and performs well.
+        </p>
+
+        <a href="#" class="code__editor__principal__main__description-link-2">Learn about strategies <i class="bi bi-arrow-right-short"></i></a>
+    </section>
+
+    <div class="code__editor__principal__main__img margin-img">
+
+        <div class="code__editor__principal__main__img-box">
+            <img class="code__editor__principal__main__img-element" src="{% static 'build/img/headers.svg' %}" alt="brand">
+        </div>
+
+    </div>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main code__editor__principal__main-projects">
+
+    <section class="code__editor__principal__header__main">
+        <h1 data-aos="fade-up" class="code__editor__principal__header__main-title code__editor__principal__header__main-title-center">Projects worked <span class="code__editor__principal__header__main-title-color2">for clients!</span></h1>
+    </section>
+
+    <section class="code__editor__principal__main__skills-3">
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">Construmas Web <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Pagina corporativa construida en php que consume una API para muestra de productos, noticias y empleos.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+    </section>
+</section>
+
+<section class="contenedor code__editor__principal__main delete__margin__top">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">The benefits</h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title code__editor__principal__header__main-title-small"> <span class="code__editor__principal__header__main-title-color">Maintenance</span> and updates in our projects.</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            We always focus on providing the respective maintenance and releasing new updates once the project is 
+            completed, ensuring that the software is always up-to-date with the latest versions.
+        </p>
+
+    </section>
+
+
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__main__skills-2">
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M13 1l.001 3.062A8.004 8.004 0 0119.938 11H23v2l-3.062.001a8.004 8.004 0 01-6.937 6.937L13 23h-2v-3.062a8.004 8.004 0 01-6.938-6.937L1 13v-2h3.062A8.004 8.004 0 0111 4.062V1h2zm-1 5a6 6 0 100 12 6 6 0 000-12zm0 4a2 2 0 110 4 2 2 0 010-4z"></path></svg>
+                    </div>
+                </div>
+
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Bug Fixes</h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Our bug fixing process begins with identifying the problem. We work closely with you to understand the symptoms of the issue. 
+                    </p>
+                </div>
+
+            </article>
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M11.141 2h1.718c2.014 0 3.094.278 4.072.801a5.452 5.452 0 012.268 2.268c.523.978.801 2.058.801 4.072v5.718c0 2.014-.278 3.094-.801 4.072a5.452 5.452 0 01-2.268 2.268c-.978.523-2.058.801-4.072.801H11.14c-2.014 0-3.094-.278-4.072-.801A5.452 5.452 0 014.8 18.931c-.522-.978-.8-2.058-.8-4.072V9.14c0-2.014.278-3.094.801-4.072A5.452 5.452 0 017.07 2.801C8.047 2.278 9.127 2 11.141 2zM11 6v5h2V6h-2z"></path></svg>
+                    </div>
+               </div>
+               <div class="code__editor__principal__main__skills__item-grid">
+                <h3 class="code__editor__principal__main__skills__item-title">Security Updates</h3>
+                <p class="code__editor__principal__main__skills__item-text">
+                    Applying security patches to protect the software against known vulnerabilities and keep it safe from potential cyber attacks.
+                </p>
+               </div>
+
+            </article>
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 100-10 5 5 0 000 10zm0-2a3 3 0 110-6 3 3 0 010 6z"></path></svg>
+                    </div>
+                </div>
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Technical Support</h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Providing technical assistance and support to software users, including issue resolution and answering frequently asked questions.
+                    </p>
+                </div>
+
+            </article>
+        </section>
+
+        <div class="code__editor__principal__main__img">
+            <img src="{% static 'build/img/comparacion.svg' %}" alt="brand">
+        </div>    
+    </article>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">Training Dev </h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title">Elevate <span class="code__editor__principal__header__main-title-color3">your </span> team's skills</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            As an expert in application development, I am thrilled to offer a comprehensive training service designed to enhance your team's skills and take your application development to the next level.
+        </p>
+        <a href="#" class="code__editor__principal__main__description-link-2">Learn about components <i class="bi bi-arrow-right-short"></i></a>
+    </section>
+
+    <div class="code__editor__principal__main__img margin-img2">
+        <img src="{% static 'build/img/editor.svg' %}" alt="brand">
+    </div>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h1 data-aos="fade-up" class="code__editor__principal__header__main-title code__editor__principal__header__main-title-center">My tech <span class="code__editor__principal__header__main-title-color2">services</span></h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text code__editor__principal__main__description-text-center">
+            Other software development services I offer.
+        </p>
+    </section>
+
+
+    <div class="code__editor__principal__main__img margin-img">
+
+        <div class="code__editor__principal__main__img-box2">
+            <video class="code__editor__principal__main__video" muted autoplay loop >
+                <source src="{% static 'build/video/command.mp4' %}" type="video/mp4">
+                <track src="#" kind="captions" srclang="es" label="spanish_captions">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+        </div>
+
+    </div>
+
+
+    <section class="code__editor__principal__main__skills">
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">SQL Developer</h3>
+            <p class="code__editor__principal__main__skills__item-text">As an experienced SQL developer, I have a proven track record of working with various database technologies, including Oracle SQL, PL/SQL, PostgreSQL, MySQL, and SQL Server.</p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Full-stack Developer</h3>
+            <p class="code__editor__principal__main__skills__item-text">As a seasoned full-stack web developer, I bring a wealth of experience with Python with Django, JavaScript with React, SQL for database management, Node.js, and PHP.</p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">System Administrator</h3>
+            <p class="code__editor__principal__main__skills__item-text">As a seasoned System Administrator, I bring extensive experience in managing both Windows Server and Ubuntu Server environments. With a strong foundation in area.</p>
+        </article>
+
+        <article class="code__editor__principal__main__skills__item">
+            <h3 class="code__editor__principal__main__skills__item-title">Enterprise software</h3>
+            <p class="code__editor__principal__main__skills__item-text">As an Enterprise Software Developer, I possess a wealth of experience in crafting using Java EE, Java Swing, and Python Tkinter. My expertise in enterprise-grade applications.</p>
+        </article>
+    </section>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">FOR TEAMS</h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title code__editor__principal__header__main-title-small">It's  <span class="code__editor__principal__header__main-title-color">time </span> to transcend.</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            Now you can shape your future by choosing from my various service categories, offering you the best experience, methodologies, 
+            and performance. From basic apps to complex ones, I transform your ideas into extraordinary products.
+        </p>
+
+        <a href="#" class="code__editor__principal__main__description-link-3">See all preview tools <i class="bi bi-arrow-right-short"></i></a>
+    </section>
+
+
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__main__skills-2">
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M13 1l.001 3.062A8.004 8.004 0 0119.938 11H23v2l-3.062.001a8.004 8.004 0 01-6.937 6.937L13 23h-2v-3.062a8.004 8.004 0 01-6.938-6.937L1 13v-2h3.062A8.004 8.004 0 0111 4.062V1h2zm-1 5a6 6 0 100 12 6 6 0 000-12zm0 4a2 2 0 110 4 2 2 0 010-4z"></path></svg>
+                    </div>
+                </div>
+
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Community - <span class="price__skills">$15 per hour</span></h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Skip the FTP server and git. Add your team members to easily store all your emails in a central, cloud-based location.
+                    </p>
+                </div>
+
+            </article>
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M11.141 2h1.718c2.014 0 3.094.278 4.072.801a5.452 5.452 0 012.268 2.268c.523.978.801 2.058.801 4.072v5.718c0 2.014-.278 3.094-.801 4.072a5.452 5.452 0 01-2.268 2.268c-.978.523-2.058.801-4.072.801H11.14c-2.014 0-3.094-.278-4.072-.801A5.452 5.452 0 014.8 18.931c-.522-.978-.8-2.058-.8-4.072V9.14c0-2.014.278-3.094.801-4.072A5.452 5.452 0 017.07 2.801C8.047 2.278 9.127 2 11.141 2zM11 6v5h2V6h-2z"></path></svg>
+                    </div>
+               </div>
+               <div class="code__editor__principal__main__skills__item-grid">
+                <h3 class="code__editor__principal__main__skills__item-title">Pro - <span class="price__skills">$20 per hour</span></h3>
+                <p class="code__editor__principal__main__skills__item-text">
+                    Organize your work into isolated workspaces by brand, client, region, or team member. Parcel is flexible to fit your workflow
+                </p>
+               </div>
+
+            </article>
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke-width="0" aria-hidden="true" class="base__Svg-vwdsuc-1 base___StyledSvg-vwdsuc-2 empIYT fVVupI with-spacing__WithSpacingComponent-sc-1358i4z-0 iJBDWK with-position__WithPositionComponent-sc-1fbffe1-0 kXovjZ with-display__WithDisplayComponent-i9boao-0 gYCHWG"><path fill="none" d="M0 0h24v24H0z"></path><path d="M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 100-10 5 5 0 000 10zm0-2a3 3 0 110-6 3 3 0 010 6z"></path></svg>
+                    </div>
+                </div>
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Business - <span class="price__skills">$40 per hour</span> </h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Share an email to quickly get feedback, ask for help from fellow #emailgeeks, or demonstrate a new technique.
+                    </p>
+                </div>
+
+            </article>
+        </section>
+
+        <div class="code__editor__principal__main__img margin-img">
+
+            <div class="code__editor__principal__main__img-box2 code__editor__principal__main__img-box3">
+                <video class="code__editor__principal__main__video code__editor__principal__main__video2" muted autoplay loop>
+                    <source src="{% static 'build/video/command.mp4' %}" type="video/mp4">
+                    <track src="#" kind="captions" srclang="es" label="spanish_captions">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+    
+        </div>
+    </article>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main code__editor__principal__main-projects">
+
+    <section class="code__editor__principal__header__main">
+        <h1 data-aos="fade-up" class="code__editor__principal__header__main-title code__editor__principal__header__main-title-center">And there's <span class="code__editor__principal__header__main-title-color2">even more!</span></h1>
+    </section>
+
+
+
+    <section class="code__editor__principal__main__skills-3">
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
+        </a>
+
+        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
+            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
+            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
+        </a>
+
+    </section>
+
+</section>
+
+<section class="contenedor code__editor__principal__main code__editor__principal__contacto">
+
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__header__main">
+            <h1 class="code__editor__principal__header__main-title code__editor__principal__header__main-title-small">Ready to give it a try?</h1>
+            <h3 class="code__editor__principal__header__main-subtitle">Upgrade your workflow. No credit card required.</h3>
+        </section>
+
+        <section class="header__principal__login">
+            <ul class="header__principal__login__list">
+                <li class="header__principal__login__list__item">
+                    <a class="header__principal__login__list__item-button" href="https://www.linkedin.com/in/ricardo-martinez-b3b15622a/" target="_blank"><i class="bi bi-linkedin"></i> Visit My Linkedln </a>
+                </li>
+                <li class="header__principal__login__list__item">
+                    <button class="header__principal__login__list__item-button download_cv" ><i class="bi bi-floppy"></i> Download CV </button>
+                </li>
+            </ul>
+        </section>
+    </article>
+
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+
+<script src="{% static 'build/js/index.js' %}"></script>
+<script src="{% static 'build/js/alerts.js' %}"></script>
+
+
+{% endblock %}

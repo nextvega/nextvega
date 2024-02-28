@@ -1,0 +1,142 @@
+.main__principal__child-contact{
+    border-bottom: 1px solid $bluelow;
+    padding-bottom: 4rem;
+    @include tablet-max{
+        padding-bottom: 0rem !important;
+    }
+}
+
+.form__main__principal{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 0rem 5rem;
+    @include tablet{
+        width: 100%;
+        gap: 4.5rem;
+        padding: 0rem !important;
+    }
+    .form__main__principal__header{
+        .form__main__principal__header__list{
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+
+            .form__main__principal__header__list__item{
+                width: 100%;
+                .form__main__principal__header__list__item-link{
+                    padding: 1rem 3rem;
+                    display: block;
+                    background-color: #3a4252;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: #FCFDFF;
+                    border-radius: 0.3rem;
+                    border: 1px solid #3a4252;
+                    cursor: pointer;
+                    transition: all 200ms ease-in-out;
+                    text-align: center;
+                    i{
+                        margin-right: 0.7rem;
+                    }
+                }
+
+
+            }
+
+            .form__main__principal__header__list__item:first-of-type{
+                .form__main__principal__header__list__item-link{
+                    padding: 1rem 3rem;
+                    background-color: #3a4252;
+                    text-align: center;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: $white;
+                    border: 1px solid #3a4252;
+                    border-radius: 0.3rem;
+                    cursor: pointer;
+                    transition: all 200ms ease-in-out;
+                    i{
+                        margin-right: 0.4rem;
+                    }
+                }
+            }
+
+            @include tablet-max{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+    }
+
+   
+    .form__main__principal__body {
+        li{
+            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            label{
+                margin-bottom: 0.5rem;
+                font-size: 1.4rem;
+                font-weight: 700;
+            }
+    
+            input{
+                display: block;
+                background-color: transparent;
+                border: 0;
+                color: $white;
+                border: 2px solid $bluelow;
+                padding: 1.3rem 1.5rem;
+                border-radius: 0.5rem;
+            }
+    
+            textarea{
+                display: block;
+                background-color: transparent;
+                border: 0;
+                color: $white;
+                border: 2px solid $bluelow;
+                padding: 1.3rem 1.5rem;
+                border-radius: 0.3rem;
+                resize: none;
+                height: 10rem;
+                width: 100% !important;
+            }
+        }
+        .form__main__principal__body__submit{
+            width: 100% !important;
+            padding: 1.5rem 3rem;
+            display: block;
+            background-color: #198CFF;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #FCFDFF;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 200ms ease-in-out;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    }
+    
+
+    
+
+
+}
+
+
+.placeholder-centered::placeholder {
+    font-weight: 800;
+    font-size: 2rem;
+    vertical-align: middle;
+}
+
+.code__editor__principal__main-contact{
+    @include tablet-max{
+        padding: 0rem 2.5rem;
+    }
+}

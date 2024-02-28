@@ -1,0 +1,19 @@
+@import 'base/variables.scss';
+@import 'base/normalize.scss';
+@import 'base/mixins.scss';
+@import 'base/globales.scss';
+
+
+/** Estilos Para la Navegacion **/
+@import 'layouts/layout.scss';
+@import 'layouts/modal.scss';
+
+
+/** Estilos Para la home **/
+@import 'pages/home/home.scss';
+@import 'pages/blog/blog.scss';
+@import 'pages/blog/entry.scss';
+@import 'pages/skills/skills.scss';
+@import 'pages/portfolio/portfolio.scss';
+@import 'pages/services/services.scss';
+@import 'pages/contact/contact.scss';

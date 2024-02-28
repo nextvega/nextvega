@@ -1,0 +1,31 @@
+.services__video{
+    margin-top: 4rem;
+}
+
+.services__video{
+    .code__editor__principal__main__img{
+        .code__editor__principal__main__img-box2{
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 5rem;
+            .code__editor__principal__main__video{
+                display: block;
+                width: 50%;
+                margin: 0 auto;
+                text-align: center;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                border-radius: 1rem;
+    
+                @include tablet{
+                    width: 80%;
+                }
+    
+                @include telefono{
+                    width: 95% ;
+                }
+            }
+        }
+
+    }
+}

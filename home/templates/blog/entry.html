@@ -1,0 +1,167 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content%}
+
+<main class="contenedor main__principal main__principal__child main__principal__child-entry">
+    <section class="main__principal__text">
+        <div class="main__principal__text__description">
+            <p class="main__principal__text__description-more main__principal__text__description-more-entry">
+                {{entry.created_at | date:"F jS Y"}}
+            </p>
+        </div>
+
+        <div class="main__principal__text__header">
+            <h1 class="main__principal__text__header-slogan">{{entry.nombre_noticia}}</h1>
+        </div>
+
+        <div class="main__principal__text__description">
+            <p class="main__principal__text__description-more main__principal__text__description-more-entry">
+                Sources by: {{entry.autor_noticia}}
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<section class="contenedor code__editor__principal__main about__principal entryblog__principal">
+    
+    <section class="code__editor__principal__main__description entryblog__principal__text">
+
+        {{entry.text | safe}}
+
+    </section>
+    
+
+
+    <div class="entryblog__principal__comment">
+        <main class=" main__principal main__principal__child main__principal__child-about">
+            <section class="main__principal__text main__principal__text__published">
+                <div class="main__principal__text__header">
+                    <h1 class="main__principal__text__header-slogan ">
+                        {{countComentarios}} comments to a « {{entry.nombre_noticia}} »
+                    </h1>
+                </div>
+
+                {% for comentario in comentarios %}
+
+
+                    <article class="published__article__principal">
+                        <div class="published__article__principal__header">
+                            <section class="published__article__principal__header__user">
+                                <img class="published__article__principal__header__user-img" src="{% static 'build/img/user.png' %}" alt="user">
+                            </section>
+
+                            <section class="published__article__principal__header__user__information">
+                                <h1 class="published__article__principal__header__user__information-text">{{comentario.autor_comentario}} </h1>
+                                <p class="published__article__principal__header__user__information-date">{{comentario.created_at}}</p>
+                            </section>
+                        </div>
+
+                        <div class="published__article__principal__body">
+                            <p class="published__article__principal__body-text">
+                                {{comentario.contenido_comentario | safe}}
+                            </p>
+                            <div class="published__article__principal__body-button">
+                                {% if user.is_authenticated %}
+                                    <button class="published__article__principal__body-button-item" id="{{comentario.id}}">Comment <i class="bi bi-chevron-compact-right"></i> </button>
+                                {% else %}
+                                    <button class="published__article__principal__body-button-item published__article__principal__body-button-item-notlogin" id="{{comentario.id}}">Log in to comment <i class="bi bi-chevron-compact-right"></i> </button>
+                                {% endif %}
+
+                            </div>
+
+                            <section class="published__article__principal__body__comment">
+                                {% if comentario.respuestas.all %}
+
+                                    {% for respuesta in comentario.respuestas.all %}
+                                        <article class="published__article__principal">
+                                            <div class="published__article__principal__header">
+                                                <section class="published__article__principal__header__user">
+                                                    <img class="published__article__principal__header__user-img" src="{% static 'build/img/user.png' %}" alt="user">
+                                                </section>
+                    
+                                                <section class="published__article__principal__header__user__information">
+                                                    <h1 class="published__article__principal__header__user__information-text">  {{respuesta.autor_comentario}} <span class="published__article__principal__header__user__information-text-span"><i class="bi bi-arrow-return-left"></i></i></span></h1>
+                                                    <p class="published__article__principal__header__user__information-date">{{respuesta.created_at}}</p>
+                                                </section>
+                                            </div>
+                    
+                                            <div class="published__article__principal__body">
+                                                <p class="published__article__principal__body-text">
+                                                    {{respuesta.contenido_comentario | safe}}
+                                                </p>
+                                            </div>
+                                        </article>
+                                    {% endfor %}
+
+                                {% endif %}
+                            </section>
+                        </div>
+                    </article>
+
+                {% endfor %}
+            </section>
+
+            <section class="main__principal__text">
+                <div class="main__principal__text__header">
+                    <h1 class="main__principal__text__header-slogan ">Leave a reply</h1>
+                </div>
+        
+                <div class="main__principal__text__description">
+                    <p class="main__principal__text__description-more">
+                        Your email address will not be published. All fields are required.
+                    </p>
+                </div>
+            </section>
+        
+        </main>
+        <form class="entryblog__principal__comment__form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="usuario" value="{{ user.id }}">
+            <input type="hidden" id="idpost" name="idpost" value="{{entry.id}}">
+            <input type="hidden" id="identifier" name="identifier" value="parent">
+            <textarea class="entryblog__principal__comment__form-editor"  name="contenido" minlength="100" id="Tinyeditor" placeholder="Write a comment that helps the community...">
+                {{contenidoSave | safe}}
+            </textarea>
+
+
+            {% if user.is_authenticated %}
+                <button class="entryblog__principal__comment__form-button" type="submit">Published</button>
+            {% else %}
+                <button class="entryblog__principal__comment__form-button entryblog__principal__comment__form-button-nologin" type="submit">Log in to comment</button>
+            {% endif %}
+        </form>
+
+    </div>
+
+    
+
+
+</section>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script>
+        let userID = 0
+        let contenidoSaveChildren = ''
+        let csrfToken = "{{ csrf_token }}";
+        let postID = "{{entry.id}}"
+        userID = "{{user.id}}"
+        contenidoSaveChildren = '{{contenidoSaveChildren}}'
+    </script>
+
+
+    <script src="{% static 'build/js/index.js' %}" ></script>
+    <script src="{% static 'build/js/entry.js' %}" ></script>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000000000;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    color: $black;
+
+    .modal__contenido {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #12141a;
+        padding: 3rem 6rem;
+        max-width: 35%;
+        min-width: 35%;
+        border-radius: 1rem;
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        color: $black;
+
+        @include tablet-max{
+            max-width: 60%;
+            min-width: 60%;
+        }
+
+        @include telefono{
+            max-width: 90%;
+            min-width: 90%;
+            padding: 3rem 3.5rem;
+        }
+
+        .modal__contenido__cerrar-modal {
+            color: #aaa;
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover,
+            &:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        }
+    }
+
+}
+  
+
+
+.modal.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+  
+
+.modal__contenido__form{
+    margin-top: 0.5rem;
+    .modal__contenido__form__grid{
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+
+        .modal__contenido__form__grid__body{
+            .modal__contenido__form__grid__body__text{
+                font-size: 1.1rem;
+                text-align: center;
+                padding: 1rem;
+                margin-top: -1rem;
+            }
+            li{
+                padding-bottom: 2.5rem;
+                display: flex;
+                flex-direction: column;
+                label{
+                    margin-bottom: 0.5rem;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    color: $white;
+                }
+        
+                input{
+                    display: block;
+                    background-color: transparent;
+                    border: 0;
+                    color: $white;
+                    border: 2px solid $grayextra;
+                    padding: 1.3rem 1.5rem;
+                    border-radius: 0.5rem;
+                }
+    
+            }
+            .modal__contenido__form__grid__body__submit{
+                width: 100% !important;
+                padding: 1.5rem 3rem;
+                display: block;
+                background-color: #198CFF;
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #FCFDFF;
+                border: none;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                transition: all 200ms ease-in-out;
+                text-align: center;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}

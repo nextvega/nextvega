@@ -1,0 +1,21 @@
+{
+  "name": "agilesync",
+  "version": "1.0.0",
+  "description": "Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp"
+  ],
+  "author": "NextVega",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.11.3"
+  }
+}

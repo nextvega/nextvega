@@ -1,0 +1,4 @@
+node_modules
+package.json
+__pycache__
+src

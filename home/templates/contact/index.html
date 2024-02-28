@@ -1,0 +1,154 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content%}
+
+<main class="contenedor main__principal main__principal__child main__principal__child-contact">
+    <section class="main__principal__text">
+        <div class="main__principal__text__header">
+            <h1 class="main__principal__text__header-slogan">Contact <span class="main__principal__text__header-slogan--color">Us</span></h1>
+        </div>
+
+        <div class="main__principal__text__description">
+            <p class="main__principal__text__description-more">
+                Please fill out the form below for general inquiries.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+
+
+<section class="contenedor code__editor__principal__main delete__margin__top code__editor__principal__main-contact">
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__main__skills-2">
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+
+                    </div>
+               </div>
+               <div class="code__editor__principal__main__skills__item-grid">
+                <h3 class="code__editor__principal__main__skills__item-title">Security Updates</h3>
+                <p class="code__editor__principal__main__skills__item-text">
+                    Applying security patches to protect the software against known vulnerabilities and keep it safe from potential cyber attacks.
+                </p>
+               </div>
+
+            </article>
+    
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+
+                    </div>
+                </div>
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Technical Support</h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Providing technical assistance and support to software users, including issue resolution and answering frequently asked questions.
+                    </p>
+                </div>
+
+            </article>
+
+            <article class="code__editor__principal__main__skills__item">
+                <div class="code__editor__principal__main__skills__item-svg">
+                    <div class="code__editor__principal__main__skills__item-svg-box">
+
+                    </div>
+                </div>
+
+                <div class="code__editor__principal__main__skills__item-grid">
+                    <h3 class="code__editor__principal__main__skills__item-title">Alige Method</h3>
+                    <p class="code__editor__principal__main__skills__item-text">
+                        Our bug fixing process begins with identifying the problem. We work closely with you to understand the symptoms of the issue. 
+                    </p>
+                </div>
+
+            </article>
+        </section>
+
+        <section class="form__main__principal">
+            <div class="form__main__principal__header">
+                <ul class="form__main__principal__header__list">
+                    <li class="form__main__principal__header__list__item">
+                        <a href="#" class="form__main__principal__header__list__item-link"> <i class="bi bi-bell"></i> Contact support </a>
+                    </li>
+                    <li class="form__main__principal__header__list__item">
+                        <a href="#" class="form__main__principal__header__list__item-link"> <i class="bi bi-bezier"></i>  Business support</a>
+                    </li>
+                </ul>
+            </div>
+            <form action="#" method="post" class="form__main__principal__body">
+                {% csrf_token %}
+                {{formcontacto.as_ul}}
+                <input type="submit" value="Get in touch" class="form__main__principal__body__submit">
+            </form>
+        </section> 
+    </article>
+</section>
+
+<section class="contenedor code__editor__principal__main">
+
+    <section class="code__editor__principal__header__main">
+        <h3 class="code__editor__principal__header__main-subtitle">Training Dev </h3>
+        <h1 data-aos="fade-right" class="code__editor__principal__header__main-title">Elevate <span class="code__editor__principal__header__main-title-color3">your </span> team's skills</h1>
+    </section>
+
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            As an expert in application development, I am thrilled to offer a comprehensive training service designed to enhance your team's skills and take your application development to the next level.
+        </p>
+        <a href="#" class="code__editor__principal__main__description-link-2">Learn about components <i class="bi bi-arrow-right-short"></i></a>
+    </section>
+
+    <div class="code__editor__principal__main__img margin-img2">
+        <img src="{% static 'build/img/editor.svg' %}" alt="brand">
+    </div>
+
+
+</section>
+
+<section class="contenedor code__editor__principal__main code__editor__principal__contacto code__editor__principal__main-no__margin">
+
+    <article class="code__editor__principal__main__grid">
+        <section class="code__editor__principal__header__main">
+            <h1 class="code__editor__principal__header__main-title code__editor__principal__header__main-title-small">Ready to give it a try?</h1>
+            <h3 class="code__editor__principal__header__main-subtitle">Upgrade your workflow. No credit card required.</h3>
+        </section>
+
+        <section class="header__principal__login">
+            <ul class="header__principal__login__list">
+                <li class="header__principal__login__list__item">
+                    <a class="header__principal__login__list__item-button" href="https://www.linkedin.com/in/ricardo-martinez-b3b15622a/" target="_blank"><i class="bi bi-linkedin"></i> Visit My Linkedln </a>
+                </li>
+                <li class="header__principal__login__list__item">
+                    <button class="header__principal__login__list__item-button download_cv" ><i class="bi bi-floppy"></i> Download CV </button>
+                </li>
+            </ul>
+        </section>
+    </article>
+
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+
+    <script src="{% static 'build/js/index.js' %}" ></script>
+    <script src="{% static 'build/js/alerts.js' %}"></script>
+
+
+{% endblock %}
