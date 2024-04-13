@@ -23,6 +23,16 @@
 
 </main>
 
+<section class="contenedor code__editor__principal__main about__principal">
+    
+    <section class="code__editor__principal__main__description">
+        <p class="code__editor__principal__main__description-text">
+            In August 2022, Parcel joined Customer.io, and together we look forward to continuing 
+            to drive email accessibility standards forward collaboratively and improving the way we create emails as an industry.
+        </p>
+    </section>
+</section>
+
 <section class="contenedor code__editor__principal__main services__video">
 
     <div class="code__editor__principal__main__img ">
@@ -180,4 +190,22 @@
     <script src="{% static 'build/js/alerts.js' %}"></script>
 
 
+    <script>
+        let download_cv = document.querySelector('.download_cv')  
+        download_cv.addEventListener("click", () =>{
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, download"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.open("{% static 'build/pdf/resumen.pdf' %}", '_blank');
+              }
+            });
+        })
+    </script>
 {% endblock %}

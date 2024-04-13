@@ -96,7 +96,7 @@
                 <ul class="header__principal__login__list">
                     <li class="header__principal__login__list__item">
                         {% if user.is_authenticated %}
-                            <button class="header__principal__login__list__item-button-user" id="mostrarModal2">Welcome: @{{user}}</button>
+                            <button class="header__principal__login__list__item-button-user">Welcome: @{{user}}</button>
                         {% else %}
                             <button class="header__principal__login__list__item-button" id="mostrarModal2">Sign In</button>
                         {% endif%}
@@ -146,13 +146,13 @@
                     <h3 class="footer__nav__form__header-description">Don’t miss out on !important tips, our short and sweet weekly email.</h3>
                 </section>
 
-                <form action="" class="main__principal__form" method="post">
+                <form action="{% url "inicio" %}" class="main__principal__form" method="post">
                     {% csrf_token %}
                     <div class="main__principal__form__grid">
                         <span class="main__principal__form__grid-icon">
                             <i class="fa-solid fa-envelope-open-text fleft__img"></i>
                         </span>
-                        <input type="email" class="main__principal__form__grid-input" placeholder="Your mail" name="" required autocomplete="off">
+                        <input type="email" class="main__principal__form__grid-input" placeholder="Your mail" name="sendEmail" required autocomplete="off">
                         <button type="submit" class="main__principal__form__grid-button">Join</button>
                     </div>
             

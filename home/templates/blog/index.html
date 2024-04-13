@@ -79,4 +79,22 @@
     <script src="{% static 'build/js/alerts.js' %}"></script>
 
 
+    <script>
+        let download_cv = document.querySelector('.download_cv')  
+        download_cv.addEventListener("click", () =>{
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, download"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.open("{% static 'build/pdf/resumen.pdf' %}", '_blank');
+              }
+            });
+        })
+    </script>
 {% endblock %}

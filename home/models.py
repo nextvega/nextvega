@@ -44,3 +44,42 @@ class ComentariosBlog(models.Model):
 
     def __str__(self):
         return f"Comentario por : {self.autor_comentario}"
+    
+class Newsletter(models.Model):
+    cliente_correo = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado El :')
+    updated_at = models.DateTimeField(auto_now =True, verbose_name='Actualizado El :')
+
+    class Meta:
+        verbose_name = "Newsletter"
+        verbose_name_plural = "Newsletter"
+
+    def __str__(self):
+        return f"Suscripcion : {self.cliente_correo}"
+    
+class CategoriasWeb(models.Model):
+    nombre_categoria = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado El :')
+    updated_at = models.DateTimeField(auto_now =True, verbose_name='Actualizado El :')
+
+    class Meta:
+        verbose_name = "Categoria Web"
+        verbose_name_plural = "Categorias Web"
+
+    def __str__(self):
+        return f"Proyecto: {self.nombre_categoria}"
+    
+class ProyectosWeb(models.Model):
+    nombre_proyecto = models.CharField(max_length=100)
+    enlace_proyecto = models.CharField(max_length=100)
+    contenido_proyecto = models.TextField(verbose_name='Contenido:')
+    categoria_proyecto = models.ForeignKey(CategoriasWeb, on_delete=models.CASCADE, related_name='categoriaweb')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado El :')
+    updated_at = models.DateTimeField(auto_now =True, verbose_name='Actualizado El :')
+
+    class Meta:
+        verbose_name = "Proyecto"
+        verbose_name_plural = "Proyecto"
+
+    def __str__(self):
+        return f"Proyecto: {self.nombre_proyecto}"

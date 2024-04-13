@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseNotFound, HttpResponse
 from .forms import FormContacto, FormSingUp, FormSingIn
-from .models import EntryBlog, ComentariosBlog,CustomUser
+from .models import EntryBlog, ComentariosBlog,CustomUser, Newsletter, ProyectosWeb
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -23,8 +23,19 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def inicio(request):
+    if request.method == 'POST':
+        sendEmail = request.POST.get('sendEmail')
+        newNewsletter = Newsletter(
+            cliente_correo = sendEmail
+        )
+        newNewsletter.save()
+        messages.success(request, f'We will get in touch', extra_tags='sendEmail')
+    entryblog = EntryBlog.objects.all().order_by('-id')
+    proyectosWeb = ProyectosWeb.objects.all().order_by('-id')
     return render(request, 'home/index.html',{
-        'title': 'Innovating Through Code'
+        'title': 'Innovating Through Code',
+        'entryblog' : entryblog,
+        'proyectosWeb' : proyectosWeb
     })
 
 def about(request):
@@ -38,8 +49,10 @@ def skills(request):
     })
 
 def portfolio(request):
+    proyectosWeb = ProyectosWeb.objects.all().order_by('-id')
     return render(request, 'portfolio/index.html',{
-        'title': 'Clients Portfolio'
+        'title': 'Clients Portfolio',
+        'proyectosWeb' : proyectosWeb
     })
 
 def services(request):
@@ -80,6 +93,7 @@ def entry(request, slug=""):
                                 primario = True
                             )
                             newcomentarioBlog.save()
+                            messages.success(request, f'Posted Message', extra_tags='sendPost')
                             return render(request, 'blog/entry.html',{
                                 'title': entryblog.nombre_noticia,
                                 'entry': entryblog,
@@ -88,6 +102,7 @@ def entry(request, slug=""):
                             })
 
                         else:
+                            messages.error(request, f'Your comment is very short', extra_tags='errorForm')
                             return render(request, 'blog/entry.html',{
                                 'title': entryblog.nombre_noticia,
                                 'entry': entryblog,
@@ -116,7 +131,7 @@ def entry(request, slug=""):
                             )
 
                             newcomentarioBlog.save()
-
+                            messages.success(request, f'Posted Message', extra_tags='sendPost')
                             return render(request, 'blog/entry.html',{
                                 'title': entryblog.nombre_noticia,
                                 'entry': entryblog,
@@ -125,6 +140,7 @@ def entry(request, slug=""):
                             })
                         
                         else:
+                            messages.error(request, f'Your comment is very short', extra_tags='errorForm')
                             return render(request, 'blog/entry.html',{
                                 'title': entryblog.nombre_noticia,
                                 'entry': entryblog,
@@ -141,7 +157,6 @@ def entry(request, slug=""):
         else:
             return redirect('blog')
 
-
     return render(request, 'blog/entry.html',{
         'title': entryblog.nombre_noticia,
         'entry': entryblog,
@@ -150,8 +165,37 @@ def entry(request, slug=""):
     })
 
 def contact(request):
-
     formcontacto = FormContacto()
+    if request.method == 'POST':
+        formContacto = FormContacto(request.POST)
+        if formContacto.is_valid():
+            data_form = formContacto.cleaned_data
+            name = data_form.get('name')
+            email = data_form.get('email')
+            message = data_form.get('message')
+
+
+            email_subject = 'Nuevo Cliente en NextVega'
+            email_body = render_to_string('layouts/contact.html' , {
+                'name': name,
+                'message': message,
+                'email': email
+            })
+            # Crea un mensaje de correo electrónico
+            email_subject = 'Nuevo Cliente en NextVega'
+            email_from = 'vegaricardo636@gmail.com'
+            email_to = ['vegaricardo636@gmail.com']
+
+            # Envía el correo electrónico como HTML
+            msg = EmailMultiAlternatives(email_subject, email_body, email_from, email_to)
+            msg.attach_alternative(email_body, "text/html")  # Adjunta la versión HTML
+            msg.send()
+            
+            messages.success(request, f'Thanks for choosing us', extra_tags='sendEmail')
+            return redirect('contact')
+            
+
+
     return render(request, 'contact/index.html',{
         'title': 'Contact Us',
         'formcontacto' : formcontacto
@@ -229,7 +273,6 @@ def logout_session(request):
         return redirect(inicio)
 
     return redirect(inicio)
-
 
 def confirm_account(request, user_id, token):
     if request.method == 'GET':

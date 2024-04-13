@@ -25,50 +25,12 @@
 
 <section class="contenedor code__editor__principal__main code__editor__principal__main-projects portfolio__project">
     <section class="code__editor__principal__main__skills-3">
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">Construmas Web <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Pagina corporativa construida en php que consume una API para muestra de productos, noticias y empleos.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">Eliminate guesswork <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Parcel provides email-specific autocomplete and hover information using cutting-edge sources like Can I Email.</p>
-        </a>
-
-        <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="#">
-            <h3 class="code__editor__principal__main__skills__item-title">HTML, Text, and AMP <i class="bi bi-box-arrow-up-right"></i></h3>
-            <p class="code__editor__principal__main__skills__item-text">Create your HTML, Text, and AMP versions neatly organized in the same file.</p>
-        </a>
+        {% for proyectos in proyectosWeb %}
+            <a class="code__editor__principal__main__skills__item code__editor__principal__main__skills__item-backgroundMove" href="{{proyectos.enlace_proyecto}}" target="_blank">
+                <h3 class="code__editor__principal__main__skills__item-title">{{proyectos.nombre_proyecto}} <i class="bi bi-box-arrow-up-right"></i></h3>
+                <p class="code__editor__principal__main__skills__item-text">{{proyectos.contenido_proyecto}}</p>
+            </a>
+        {% endfor %}
     </section>
 </section>
 
@@ -181,4 +143,22 @@
     <script src="{% static 'build/js/alerts.js' %}"></script>
 
 
+    <script>
+        let download_cv = document.querySelector('.download_cv')  
+        download_cv.addEventListener("click", () =>{
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, download"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.open("{% static 'build/pdf/resumen.pdf' %}", '_blank');
+              }
+            });
+        })
+    </script>
 {% endblock %}

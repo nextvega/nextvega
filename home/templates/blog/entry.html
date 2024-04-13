@@ -8,6 +8,29 @@
 
 {% block content%}
 
+{%for message in messages %}
+    {%if "sendPost" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Send Message",
+            text: "{{message}}",
+            icon: "success"
+            });
+        </script>
+    {%endif%}
+
+
+    {%if "errorForm" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Error Message",
+            text: "{{message}}",
+            icon: "error"
+            });
+        </script>
+    {%endif%}
+{% endfor %}
+
 <main class="contenedor main__principal main__principal__child main__principal__child-entry">
     <section class="main__principal__text">
         <div class="main__principal__text__description">
