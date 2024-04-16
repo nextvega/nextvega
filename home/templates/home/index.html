@@ -31,12 +31,42 @@
         </script>
     {%endif%}
 
+    {%if "signout" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Successful Logout",
+            text: "{{message}}",
+            icon: "success"
+            });
+        </script>
+    {%endif%}
+
     {%if "errorForm" in message.tags %}
         <script>
             Swal.fire({
             title: "Failed To Login",
             text: "{{message}}",
             icon: "error"
+            });
+        </script>
+    {%endif%}
+
+    {%if "emailToken" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Verification email",
+            text: "{{message}}",
+            icon: "info"
+            });
+        </script>
+    {%endif%}
+
+    {%if "tokenValid" in message.tags %}
+        <script>
+            Swal.fire({
+            title: "Welcome to NextVega",
+            text: "{{message}}",
+            icon: "success"
             });
         </script>
     {%endif%}
@@ -57,7 +87,8 @@
         </div>
     </section>
 
-    <form action="" class="main__principal__form" method="post">
+    <form action="" class="main__principal__form" method="post" id="principalNewsletter">
+        <input type="hidden" name="g-recaptcha-response" id='recaptcha'>
         {% csrf_token %}
         <div class="main__principal__form__grid">
             <span class="main__principal__form__grid-icon">
@@ -537,7 +568,7 @@
     download_cv.addEventListener("click", () =>{
       Swal.fire({
           title: "Are you sure?",
-          text: "You won't be able to revert this!",
+          text: "The file will download to your computer.",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

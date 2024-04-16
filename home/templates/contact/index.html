@@ -99,7 +99,8 @@
                     </li>
                 </ul>
             </div>
-            <form action="#" method="post" class="form__main__principal__body">
+            <form action="#" method="post" class="form__main__principal__body" id="contactForm">
+                <input type="hidden" name="g-recaptcha-response" id='recaptcha'>
                 {% csrf_token %}
                 {{formcontacto.as_ul}}
                 <input type="submit" value="Get in touch" class="form__main__principal__body__submit">
@@ -167,7 +168,7 @@
         download_cv.addEventListener("click", () =>{
           Swal.fire({
               title: "Are you sure?",
-              text: "You won't be able to revert this!",
+              text: "The file will download to your computer.",
               icon: "warning",
               showCancelButton: true,
               confirmButtonColor: "#3085d6",

@@ -18,3 +18,9 @@ def get_TinyMCE(request):
     return{
         'tiny_mce' : tiny_mce
     }
+
+def public_Key(request):
+    recaptcha = settings.RECAPTCHA_SITE_KEY
+    return{
+        'site_key': recaptcha
+    }

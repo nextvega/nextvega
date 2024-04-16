@@ -158,7 +158,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'home.context_processors.get_FormSingUp',
                 'home.context_processors.get_FormSingIn',
-                'home.context_processors.get_TinyMCE'
+                'home.context_processors.get_TinyMCE',
+                'home.context_processors.public_Key'
             ],
         },
     },
@@ -242,3 +243,10 @@ EMAIL_USE_TLS = True
 
 
 AUTH_USER_MODEL = 'home.CustomUser'
+
+
+
+# RECAPTCHA
+RECAPTCHA_SITE_KEY = "6Ld6lRMpAAAAABAlaT5mJl64S7RJ0tVlJONeCm-u"
+RECAPTCHA_SECRET_KEY = "6Ld6lRMpAAAAAOTRGqgXIneiokght8IS8nsMksmy"
+RECAPTCHA_REQUIRED_SCORE = 0.85

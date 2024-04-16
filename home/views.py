@@ -5,7 +5,8 @@ from .forms import FormContacto, FormSingUp, FormSingIn
 from .models import EntryBlog, ComentariosBlog,CustomUser, Newsletter, ProyectosWeb
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from django.conf import settings
+import requests
 
 # Create User Token
 from django.core.mail import send_mail
@@ -25,17 +26,33 @@ from django.contrib.auth import authenticate, login, logout
 def inicio(request):
     if request.method == 'POST':
         sendEmail = request.POST.get('sendEmail')
-        newNewsletter = Newsletter(
-            cliente_correo = sendEmail
-        )
-        newNewsletter.save()
-        messages.success(request, f'We will get in touch', extra_tags='sendEmail')
+        secret_key = settings.RECAPTCHA_SECRET_KEY
+        data = request.POST
+        # captcha verification
+        print(data)
+        data = {
+            'response': data.get('g-recaptcha-response'),
+            'secret': secret_key
+        }
+        resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result_json = resp.json()
+
+        print(result_json)
+
+        if not result_json.get('success'):
+            return redirect('inicio')
+        else:
+            newNewsletter = Newsletter(
+                cliente_correo = sendEmail
+            )
+            newNewsletter.save()
+            messages.success(request, f'We will get in touch', extra_tags='sendEmail')
     entryblog = EntryBlog.objects.all().order_by('-id')
     proyectosWeb = ProyectosWeb.objects.all().order_by('-id')
     return render(request, 'home/index.html',{
         'title': 'Innovating Through Code',
         'entryblog' : entryblog,
-        'proyectosWeb' : proyectosWeb
+        'proyectosWeb' : proyectosWeb,
     })
 
 def about(request):
@@ -170,29 +187,46 @@ def contact(request):
         formContacto = FormContacto(request.POST)
         if formContacto.is_valid():
             data_form = formContacto.cleaned_data
-            name = data_form.get('name')
-            email = data_form.get('email')
-            message = data_form.get('message')
+
+            secret_key = settings.RECAPTCHA_SECRET_KEY
+            data = request.POST
+            # captcha verification
+            print(data)
+            data = {
+                'response': data.get('g-recaptcha-response'),
+                'secret': secret_key
+            }
+            resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result_json = resp.json()
+
+            print(result_json)
+
+            if not result_json.get('success'):
+                return redirect('inicio')
+            else:
+                name = data_form.get('name')
+                email = data_form.get('email')
+                message = data_form.get('message')
 
 
-            email_subject = 'Nuevo Cliente en NextVega'
-            email_body = render_to_string('layouts/contact.html' , {
-                'name': name,
-                'message': message,
-                'email': email
-            })
-            # Crea un mensaje de correo electrónico
-            email_subject = 'Nuevo Cliente en NextVega'
-            email_from = 'vegaricardo636@gmail.com'
-            email_to = ['vegaricardo636@gmail.com']
+                email_subject = 'Nuevo Cliente en NextVega'
+                email_body = render_to_string('layouts/contact.html' , {
+                    'name': name,
+                    'message': message,
+                    'email': email
+                })
+                # Crea un mensaje de correo electrónico
+                email_subject = 'Nuevo Cliente en NextVega'
+                email_from = 'vegaricardo636@gmail.com'
+                email_to = ['nextvega@nextvegasolutions.com']
 
-            # Envía el correo electrónico como HTML
-            msg = EmailMultiAlternatives(email_subject, email_body, email_from, email_to)
-            msg.attach_alternative(email_body, "text/html")  # Adjunta la versión HTML
-            msg.send()
-            
-            messages.success(request, f'Thanks for choosing us', extra_tags='sendEmail')
-            return redirect('contact')
+                # Envía el correo electrónico como HTML
+                msg = EmailMultiAlternatives(email_subject, email_body, email_from, email_to)
+                msg.attach_alternative(email_body, "text/html")  # Adjunta la versión HTML
+                msg.send()
+                
+                messages.success(request, f'Thanks for choosing us', extra_tags='sendEmail')
+                return redirect('contact')
             
 
 
@@ -209,40 +243,58 @@ def singUp(request):
         if formSingUp.is_valid():
             data_form = formSingUp.cleaned_data
 
-            name_up = data_form.get('name_up')
-            email_up = data_form.get('email_up')
-            password_up = data_form.get('password_up')
+            secret_key = settings.RECAPTCHA_SECRET_KEY
+            data = request.POST
+            # captcha verification
+            print(data)
+            data = {
+                'response': data.get('g-recaptcha-response'),
+                'secret': secret_key
+            }
+            resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result_json = resp.json()
 
-            try:
-                user = CustomUser.objects.create_user(username=name_up, email=email_up, password=password_up)
-                token = default_token_generator.make_token(user)
+            print(result_json)
 
-                user.first_name = name_up
-                user.last_name = name_up
-                user.token = token
-                user.is_active = False
-                user.save()
-
-                if user:
-                    email_subject = 'Confirmar tu cuenta en NextVega'
-                    email_body = render_to_string('layouts/email.html' , {
-                        'confirmation_link' : request.build_absolute_uri(reverse("confirm_account", args=[user.pk, token])),
-                        'name_up': name_up
-                    })
-                    # Crea un mensaje de correo electrónico
-                    email_subject = 'Confirmar tu cuenta en NextVega'
-                    email_from = 'vegaricardo636@gmail.com'
-                    email_to = [user.email]
-
-                    # Envía el correo electrónico como HTML
-                    msg = EmailMultiAlternatives(email_subject, email_body, email_from, email_to)
-                    msg.attach_alternative(email_body, "text/html")  # Adjunta la versión HTML
-                    msg.send()
-
-                else:
-                    return redirect('inicio')
-            except:
+            if not result_json.get('success'):
                 return redirect('inicio')
+            
+            else:
+                name_up = data_form.get('name_up')
+                email_up = data_form.get('email_up')
+                password_up = data_form.get('password_up')
+
+                try:
+                    user = CustomUser.objects.create_user(username=name_up, email=email_up, password=password_up)
+                    token = default_token_generator.make_token(user)
+
+                    user.first_name = name_up
+                    user.last_name = name_up
+                    user.token = token
+                    user.is_active = False
+                    user.save()
+
+                    if user:
+                        email_subject = 'Confirmar tu cuenta en NextVega'
+                        email_body = render_to_string('layouts/email.html' , {
+                            'confirmation_link' : request.build_absolute_uri(reverse("confirm_account", args=[user.pk, token])),
+                            'name_up': name_up
+                        })
+                        # Crea un mensaje de correo electrónico
+                        email_subject = 'Confirmar tu cuenta en NextVega'
+                        email_from = 'vegaricardo636@gmail.com'
+                        email_to = [user.email]
+
+                        # Envía el correo electrónico como HTML
+                        msg = EmailMultiAlternatives(email_subject, email_body, email_from, email_to)
+                        msg.attach_alternative(email_body, "text/html")  # Adjunta la versión HTML
+                        msg.send()
+                        messages.success(request, f'A verification email has been sent to your email', extra_tags='emailToken')
+                        return redirect(inicio)
+                    else:
+                        return redirect('inicio')
+                except:
+                    return redirect('inicio')
             
     return redirect('inicio')
 
@@ -251,17 +303,43 @@ def signIn(request):
         formSignIn = FormSingIn(request.POST)
         if formSignIn.is_valid():
             data_form = formSignIn.cleaned_data
-            email_in = data_form.get('email_in')
-            password_in = data_form.get('password_in')
-            user = authenticate(request, username = email_in, password = password_in)
-            
-            if user is not None:
-                login(request, user)
-                messages.success(request, f'Welcome back: {user}', extra_tags='signin')
-                return redirect(inicio)
+
+            secret_key = settings.RECAPTCHA_SECRET_KEY
+            data = request.POST
+            # captcha verification
+            print(data)
+            data = {
+                'response': data.get('g-recaptcha-response'),
+                'secret': secret_key
+            }
+            resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result_json = resp.json()
+
+            print(result_json)
+
+            if not result_json.get('success'):
+                return redirect('inicio')
             else:
-                messages.error(request, 'Incorrect username or password',extra_tags='errorForm')
-                return redirect(inicio)
+                email_in = data_form.get('email_in')
+                password_in = data_form.get('password_in')
+                user = authenticate(request, username = email_in, password = password_in)
+                
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, f'Welcome back: {user}', extra_tags='signin')
+                    return redirect(inicio)
+                else:
+                    try:
+                        user_token = CustomUser.objects.get(username = email_in)
+                        if user_token.token is not None:
+                            messages.error(request, 'Your account has not been verified',extra_tags='errorForm')
+                            return redirect(inicio)
+                        else:
+                            messages.error(request, 'Incorrect username or password',extra_tags='errorForm')
+                            return redirect(inicio)
+                    except:
+                        messages.error(request, 'Incorrect username or password',extra_tags='errorForm')
+                        return redirect(inicio)
         else:
             return redirect(inicio)
         
@@ -270,6 +348,7 @@ def signIn(request):
 def logout_session(request):
     if request.method == 'GET':
         logout(request)
+        messages.success(request, f'Session Ended', extra_tags='signout')
         return redirect(inicio)
 
     return redirect(inicio)
@@ -282,6 +361,7 @@ def confirm_account(request, user_id, token):
                 searchToken.token = None
                 searchToken.is_active = True
                 searchToken.save()
+                messages.success(request, f'Log in with your account', extra_tags='tokenValid')
             else:
                 return HttpResponse("¡Ocurrio Un Error!")
         except:

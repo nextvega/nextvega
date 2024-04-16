@@ -42,10 +42,32 @@
         
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{site_key}}"></script>
+    <script>
+        grecaptcha.ready(function() {
+            function executeRecaptcha(formSelector) {
+            $(formSelector).submit(function(e){
+                var form = this;
+                e.preventDefault();
+                grecaptcha.execute('{{site_key}}', {action: 'contactform'}).then(function(token) {
+                    $(form).find('input[name="g-recaptcha-response"]').val(token);
+                    form.submit();
+                });
+            });
+        }
+            executeRecaptcha('#newsletterform');
+            executeRecaptcha('#principalNewsletter');
+            executeRecaptcha('#singupForm');
+            executeRecaptcha('#singinForm');
+            executeRecaptcha('#contactForm');
+        });
+    </script>
     <title>NextVega: {{title}}</title>
 </head>
 <body>
-
     <header class="header__principal">
         <nav class="contenedor header__principal__grid">
             <section class="header__principal__nav">
@@ -103,7 +125,7 @@
                     </li>
                     <li class="header__principal__login__list__item">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'logout' %}" class="header__principal__login__list__item-button-logout" id="mostrarModal">Login Out</a>
+                            <a href="{% url 'logout' %}" class="header__principal__login__list__item-button-logout">Login Out</a>
                         {% else %}
                             <button class="header__principal__login__list__item-button" id="mostrarModal">Sign up</button>
                         {% endif%}
@@ -146,7 +168,8 @@
                     <h3 class="footer__nav__form__header-description">Don’t miss out on !important tips, our short and sweet weekly email.</h3>
                 </section>
 
-                <form action="{% url "inicio" %}" class="main__principal__form" method="post">
+                <form action="{% url 'inicio' %}" class="main__principal__form" method="post" id="newsletterform">
+                    <input type="hidden" name="g-recaptcha-response" id='recaptcha'>
                     {% csrf_token %}
                     <div class="main__principal__form__grid">
                         <span class="main__principal__form__grid-icon">
@@ -239,8 +262,10 @@
             <span class="modal__contenido__cerrar-modal" onclick="cerrarModal()">&times;</span>
 
             <div class="modal__contenido__form">
-                <form action="{% url 'singUp' %}" method="post" class="modal__contenido__form__grid">
+                <form action="{% url 'singUp' %}" method="post" class="modal__contenido__form__grid" id="singupForm">
+                    <input type="hidden" name="g-recaptcha-response" id='recaptcha'>
                     <section class="modal__contenido__form__grid__body">
+                        
                         {% csrf_token %}
                         {{formSingUp.as_ul}}
                         <p class="modal__contenido__form__grid__body__text">Important Tips, Parcel’s weekly newsletter <br> © 2024 NextVega Software.</p>
@@ -257,7 +282,8 @@
             <span class="modal__contenido__cerrar-modal" onclick="cerrarModal2()">&times;</span>
 
             <div class="modal__contenido__form">
-                <form action="{% url 'signIn' %}" method="post" class="modal__contenido__form__grid">
+                <form action="{% url 'signIn' %}" method="post" class="modal__contenido__form__grid" id="singinForm">
+                    <input type="hidden" name="g-recaptcha-response" id='recaptcha'>
                     <section class="modal__contenido__form__grid__body">
                         {% csrf_token %}
                         {{formSingIn.as_ul}}
@@ -277,25 +303,20 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/651d0dc710c0b25724885bb4/1hbsnrl98';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
 
     <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+
+    <style>
+        .widget-visible iframe:first-of-type{
+            right: 0px !important;
+            bottom: 17px !important;
+            left: 23px !important;
+        }
+    </style>
     {% block scripts %}
 
 

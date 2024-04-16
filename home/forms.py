@@ -20,7 +20,7 @@ class FormSingUp(forms.Form):
 
 
 class FormSingIn(forms.Form):
-    email_in = forms.CharField(label = "Name", widget=forms.TextInput(attrs={'placeholder': 'eleanor@goodplace.com'}))
+    email_in = forms.CharField(label = "Username", widget=forms.TextInput(attrs={'placeholder': 'eleanor27'}))
     password_in = forms.CharField(label = "Password", widget=forms.PasswordInput(attrs={'placeholder': '..............', 'class': 'placeholder-centered'}))
     
     def __init__(self, *args, **kwargs):
