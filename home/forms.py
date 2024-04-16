@@ -10,7 +10,7 @@ class FormContacto(forms.Form):
         
 
 class FormSingUp(forms.Form):
-    name_up = forms.CharField(label = "Name", widget=forms.TextInput(attrs={'placeholder': 'Eleanor Shellstrop'}))
+    name_up = forms.CharField(label = "Username", widget=forms.TextInput(attrs={'placeholder': 'eleanor27'}))
     email_up = forms.EmailField(label = "Email", widget=forms.TextInput(attrs={'placeholder': 'eleanor@goodplace.com'}))
     password_up = forms.CharField(label = "Password", widget=forms.PasswordInput(attrs={'placeholder': '..............', 'class': 'placeholder-centered'}))
     
